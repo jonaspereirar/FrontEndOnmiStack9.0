@@ -11,9 +11,10 @@ export default function Dashboard() {
 
     //using socket io connection from back end
     useEffect(() => {
-        const socket = socketio('http://localhost:3333');
-
-        socket.emit('omni', 'Stack');
+        const user_id = localStorage.getItem('user'); //getting user id with socket io
+        const socket = socketio('http://localhost:3333', {
+            query: { user_id }, //getting user id with socket io
+        });
     }, []);
 
     useEffect(() => {
